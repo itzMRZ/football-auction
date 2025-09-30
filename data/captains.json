@@ -1,0 +1,8 @@
+{
+  "captains": [
+    {"name":"Moin","teamName":"Team Moin","budget":10000},
+    {"name":"Sharar","teamName":"Team Sharar","budget":10000},
+    {"name":"MRZ","teamName":"Team MRZ","budget":10000},
+    {"name":"Mahim","teamName":"Team Mahim","budget":10000}
+  ]
+}

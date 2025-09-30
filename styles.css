@@ -1,0 +1,302 @@
+:root {
+  --bg: #0f172a;
+  --panel: #111827;
+  --panel-2: #0b1220;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --accent: #22d3ee;
+  --success: #22c55e;
+  --warn: #f59e0b;
+  --danger: #ef4444;
+}
+
+.team-moin { --team: #3b82f6; }
+.team-sharar { --team: #22c55e; }
+.team-mrz { --team: #f59e0b; }
+.team-mahim { --team: #ef4444; }
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: radial-gradient(1000px 800px at 10% 10%, #0b1530, #090f20 60%, #060b16);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+.wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 16px 24px 32px;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0));
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.toolbar h1 {
+  margin: 0;
+  font-size: clamp(20px, 2.5vw, 32px);
+  letter-spacing: 0.5px;
+}
+
+.toolbar .right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#playerIndex {
+  font-weight: 600;
+  color: var(--accent);
+  font-size: clamp(14px, 2vw, 18px);
+}
+
+button, input {
+  font-size: clamp(14px, 1.6vw, 18px);
+}
+
+button {
+  background: #1f2937;
+  color: var(--text);
+  padding: 10px 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.06s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+button:hover { transform: translateY(-1px); }
+button:active { transform: translateY(0); }
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.player-panel {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 24px;
+  align-items: center;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 16px;
+  margin-top: 18px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+
+.player-photo-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: linear-gradient(145deg, #0e1a2b, #0a1320);
+}
+
+#playerPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.player-details h2 {
+  margin: 0 0 6px;
+  font-size: clamp(22px, 3vw, 34px);
+}
+
+.player-meta {
+  color: var(--muted);
+  font-weight: 500;
+  margin-bottom: 12px;
+  font-size: clamp(14px, 1.6vw, 18px);
+}
+
+.bid-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#bidInput {
+  width: 220px;
+  padding: 10px 12px;
+  background: #0b1220;
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 10px;
+  outline: none;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.captain-dashboard {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.captain-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  overflow: hidden;
+}
+
+.captain-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--team, var(--accent));
+}
+
+.captain-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.team-name {
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  font-size: clamp(16px, 2vw, 22px);
+}
+
+.captain-name {
+  font-weight: 600;
+  color: var(--muted);
+  font-size: clamp(12px, 1.4vw, 16px);
+}
+
+.captain-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 10px;
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  color: var(--muted);
+  font-size: clamp(12px, 1.4vw, 14px);
+}
+
+.stat-value {
+  font-weight: 700;
+  font-size: clamp(14px, 1.8vw, 18px);
+}
+
+.budget.low { color: var(--warn); }
+.budget.critical { color: var(--danger); }
+
+.award-btn {
+  width: 100%;
+  padding: 10px 12px;
+  font-weight: 800;
+  color: #0b1220;
+  background: var(--team, var(--accent));
+  border: none;
+  border-radius: 10px;
+}
+
+.captain-card.full .award-btn { opacity: 0.5; cursor: not-allowed; }
+
+.badge-sold {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: var(--success);
+  color: #0b1220;
+  font-weight: 800;
+  font-size: 12px;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  background: #111827;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  padding: 10px 14px;
+  color: var(--text);
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-6px);
+}
+
+.player-panel.awarded {
+  animation: pulse 600ms ease;
+}
+.captain-card.flash {
+  animation: flash 800ms ease;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 rgba(34,211,238,0); }
+  50% { box-shadow: 0 0 0 10px rgba(34,211,238,0.15); }
+  100% { box-shadow: 0 0 0 rgba(34,211,238,0); }
+}
+@keyframes flash {
+  0% { outline: 0 solid rgba(255,255,255,0); }
+  50% { outline: 4px solid rgba(255,255,255,0.45); }
+  100% { outline: 0 solid rgba(255,255,255,0); }
+}
+
+.export-bar {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.note {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+@media (max-width: 1100px) {
+  .captain-dashboard { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  .player-panel { grid-template-columns: 1fr; }
+  .captain-dashboard { grid-template-columns: 1fr; }
+  #bidInput { width: 100%; }
+}

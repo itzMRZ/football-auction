@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Football Player Auction</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="wrapper">
+    <div class="toolbar">
+      <h1>⚽ Football Auction</h1>
+      <div class="right">
+        <span id="playerIndex">Player 1 of 16</span>
+        <button id="fullscreenBtn" aria-label="Toggle Fullscreen">🖥️ Fullscreen</button>
+      </div>
+    </div>
+
+    <div class="player-panel">
+      <div class="player-photo-wrap">
+        <img id="playerPhoto" src="" alt="Player Photo">
+      </div>
+      <div class="player-details">
+        <h2 id="playerName">Loading...</h2>
+        <p class="player-meta" id="playerMeta">Position • Rating</p>
+        <div class="bid-input">
+          <label for="bidInput" style="display: none;">Bid Amount</label>
+          <input type="number" id="bidInput" placeholder="Enter bid amount" aria-label="Bid amount" min="0" step="1">
+        </div>
+        <div class="controls">
+          <button id="prevBtn">◀ Previous</button>
+          <button id="nextBtn">Next ▶</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="captainDashboard" class="captain-dashboard">
+      <!-- Captain cards will be dynamically rendered here -->
+    </div>
+
+    <div class="export-bar">
+      <button id="exportJsonBtn">📥 Export Teams (JSON)</button>
+      <button id="exportPdfBtn">📄 Export Teams (PDF)</button>
+      <button id="resetBtn" style="background:#dc2626;color:white;">🔄 Reset Auction</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" aria-live="polite" role="status"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

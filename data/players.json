@@ -1,0 +1,20 @@
+{
+  "players": [
+    {"name":"Arko","position":"Forward","photo":"assets/arko.jpg","rating":86},
+    {"name":"Mashfee","position":"Midfielder","photo":"assets/mashfee.jpg","rating":83},
+    {"name":"Rafid","position":"Defender","photo":"assets/rafid.jpg","rating":80},
+    {"name":"Rehan","position":"Goalkeeper","photo":"assets/rehan.jpg","rating":78},
+    {"name":"Salfi","position":"Forward","photo":"assets/salfi.jpg","rating":85},
+    {"name":"Afnan","position":"Midfielder","photo":"assets/afnan.jpg","rating":82},
+    {"name":"Shameen","position":"Defender","photo":"assets/shameen.jpg","rating":79},
+    {"name":"Safwan","position":"Forward","photo":"assets/safwan.jpg","rating":84},
+    {"name":"Enaam","position":"Midfielder","photo":"assets/enaam.jpg","rating":81},
+    {"name":"Talha","position":"Defender","photo":"assets/talha.jpg","rating":77},
+    {"name":"Ishrak","position":"Forward","photo":"assets/ishrak.jpg","rating":83},
+    {"name":"Taqbir","position":"Midfielder","photo":"assets/taqbir.jpg","rating":80},
+    {"name":"Raomim","position":"Defender","photo":"assets/raomim.jpg","rating":79},
+    {"name":"Saqeef","position":"Forward","photo":"assets/saqeef.jpg","rating":82},
+    {"name":"Ahnaf","position":"Midfielder","photo":"assets/ahnaf.jpg","rating":81},
+    {"name":"Sakib","position":"Goalkeeper","photo":"assets/sakib.jpg","rating":76}
+  ]
+}
