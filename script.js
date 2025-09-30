@@ -164,6 +164,10 @@ function cacheDom() {
   UI.playerListContent = document.getElementById("playerListContent");
   UI.toggleSidebar = document.getElementById("toggleSidebar");
   UI.showSidebar = document.getElementById("showSidebar");
+  UI.viewTeamsBtn = document.getElementById("viewTeamsBtn");
+  UI.teamListModal = document.getElementById("teamListModal");
+  UI.closeModal = document.getElementById("closeModal");
+  UI.teamListBody = document.getElementById("teamListBody");
 }
 
 function buildCaptainCards() {
@@ -517,6 +521,15 @@ function setupEventListeners() {
   UI.resetBtn?.addEventListener("click", resetAuction);
   UI.toggleSidebar?.addEventListener("click", toggleSidebarOpen);
   UI.showSidebar?.addEventListener("click", toggleSidebarOpen);
+  UI.viewTeamsBtn?.addEventListener("click", showTeamListModal);
+  UI.closeModal?.addEventListener("click", closeTeamListModal);
+  
+  // Close modal on outside click
+  UI.teamListModal?.addEventListener("click", (e) => {
+    if (e.target === UI.teamListModal) {
+      closeTeamListModal();
+    }
+  });
 
   UI.bidInput?.addEventListener("keydown", e => {
     if (e.key === "Enter") {
@@ -588,5 +601,97 @@ function toggleSidebarOpen() {
     UI.showSidebar.classList.toggle('hidden');
   }
 }
+
+/* Team List Modal */
+function showTeamListModal() {
+  if (!UI.teamListModal || !UI.teamListBody) return;
+  
+  let html = '<div class="team-grid">';
+  
+  STATE.captains.forEach(captain => {
+    const slug = fmt.slug(captain.name);
+    const teamSlug = fmt.slug(captain.teamName);
+    const teamSize = 1 + captain.roster.length;
+    const spent = captain.initialBudget - captain.budget;
+    
+    html += `
+      <div class="team-card-full ${teamSlug}">
+        <div class="team-card-header">
+          <div class="team-card-photo">
+            <img src="assets/${slug}.jpg" alt="${captain.name}" onerror="this.src='${PLACEHOLDER_IMG}'">
+          </div>
+          <div class="team-card-info">
+            <h3>${captain.teamName}</h3>
+            <div class="team-card-captain">Captain: ${captain.name}</div>
+          </div>
+        </div>
+        
+        <div class="team-stats">
+          <div class="team-stat">
+            <span class="team-stat-label">Team Size</span>
+            <div class="team-stat-value">${teamSize}/${STATE.config.teamSize}</div>
+          </div>
+          <div class="team-stat">
+            <span class="team-stat-label">Remaining</span>
+            <div class="team-stat-value">${fmt.money(captain.budget)}</div>
+          </div>
+          <div class="team-stat">
+            <span class="team-stat-label">Spent</span>
+            <div class="team-stat-value">${fmt.money(spent)}</div>
+          </div>
+          <div class="team-stat">
+            <span class="team-stat-label">Players</span>
+            <div class="team-stat-value">${captain.roster.length}</div>
+          </div>
+        </div>
+        
+        <ul class="team-players-list">
+          <li class="team-player-item" style="background:rgba(255,255,255,0.05);border-left:3px solid var(--accent);">
+            <div>
+              <div class="team-player-name">${captain.name} (C)</div>
+            </div>
+            <div class="team-player-meta">Captain</div>
+          </li>
+    `;
+    
+    if (captain.roster.length === 0) {
+      html += '<div class="empty-team">No players acquired yet</div>';
+    } else {
+      captain.roster.forEach(player => {
+        html += `
+          <li class="team-player-item">
+            <div>
+              <div class="team-player-name">${player.name}</div>
+              <div class="team-player-meta">${player.position}</div>
+            </div>
+            <div class="team-player-meta">${fmt.money(player.price)}</div>
+          </li>
+        `;
+      });
+    }
+    
+    html += `
+        </ul>
+      </div>
+    `;
+  });
+  
+  html += '</div>';
+  UI.teamListBody.innerHTML = html;
+  UI.teamListModal.classList.add('open');
+}
+
+function closeTeamListModal() {
+  if (UI.teamListModal) {
+    UI.teamListModal.classList.remove('open');
+  }
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && UI.teamListModal?.classList.contains('open')) {
+    closeTeamListModal();
+  }
+});
 
 document.addEventListener("DOMContentLoaded", init);

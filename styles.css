@@ -491,6 +491,222 @@ button:disabled {
   display: none !important;
 }
 
+/* Team List Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  z-index: 1000;
+  overflow-y: auto;
+  backdrop-filter: blur(5px);
+}
+
+.modal.open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-content {
+  background: linear-gradient(180deg, #1a1f2e, #0f1419);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  max-width: 1200px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  position: sticky;
+  top: 0;
+  background: #1a1f2e;
+  z-index: 10;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 24px;
+  color: var(--accent);
+}
+
+.close-modal {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 36px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.close-modal:hover {
+  background: rgba(255,255,255,0.1);
+  color: var(--accent);
+  transform: none;
+}
+
+.modal-body {
+  padding: 24px;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.team-card-full {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.team-card-full::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+
+.team-card-full.chelsea::before { background: #3b82f6; }
+.team-card-full.man-city::before { background: #22c55e; }
+.team-card-full.liverpool::before { background: #f59e0b; }
+.team-card-full.arsenal::before { background: #ef4444; }
+
+.team-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.team-card-photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid;
+  flex-shrink: 0;
+}
+
+.team-card-full.chelsea .team-card-photo { border-color: #3b82f6; }
+.team-card-full.man-city .team-card-photo { border-color: #22c55e; }
+.team-card-full.liverpool .team-card-photo { border-color: #f59e0b; }
+.team-card-full.arsenal .team-card-photo { border-color: #ef4444; }
+
+.team-card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.team-card-info h3 {
+  margin: 0 0 4px;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.team-card-captain {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.team-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding: 12px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 8px;
+}
+
+.team-stat {
+  font-size: 12px;
+}
+
+.team-stat-label {
+  color: var(--muted);
+  display: block;
+}
+
+.team-stat-value {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.team-players-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.team-player-item {
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.team-player-name {
+  font-weight: 600;
+}
+
+.team-player-meta {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.empty-team {
+  padding: 20px;
+  text-align: center;
+  color: var(--muted);
+  font-style: italic;
+}
+
 @media (max-width: 700px) {
   .player-panel { grid-template-columns: 1fr; }
   .captain-dashboard { grid-template-columns: 1fr; }

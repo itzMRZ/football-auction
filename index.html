@@ -51,6 +51,7 @@
     </div>
 
     <div class="export-bar">
+      <button id="viewTeamsBtn">👥 View Full Teams</button>
       <button id="exportJsonBtn">📥 Export Teams (JSON)</button>
       <button id="exportPdfBtn">📄 Export Teams (PDF)</button>
       <button id="resetBtn" style="background:#dc2626;color:white;">🔄 Reset Auction</button>
@@ -58,6 +59,19 @@
   </div>
 
   <div id="toast" class="toast" aria-live="polite" role="status"></div>
+
+  <!-- Full Team List Modal -->
+  <div id="teamListModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>🏆 Full Team Rosters</h2>
+        <button id="closeModal" class="close-modal" aria-label="Close">&times;</button>
+      </div>
+      <div id="teamListBody" class="modal-body">
+        <!-- Will be populated by JavaScript -->
+      </div>
+    </div>
+  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="script.js"></script>
