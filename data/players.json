@@ -15,6 +15,9 @@
     {"name":"Raomim","position":"Defender","photo":"assets/raomim.jpg","rating":79},
     {"name":"Saqeef","position":"Forward","photo":"assets/saqeef.jpg","rating":82},
     {"name":"Ahnaf","position":"Midfielder","photo":"assets/ahnaf.jpg","rating":81},
-    {"name":"Sakib","position":"Goalkeeper","photo":"assets/sakib.jpg","rating":76}
+    {"name":"Sakib","position":"Goalkeeper","photo":"assets/sakib.jpg","rating":76},
+    {"name":"Bangali","position":"Forward","photo":"assets/Bangali.jpg","rating":84},
+    {"name":"Ifaz","position":"Midfielder","photo":"assets/Ifaz.jpg","rating":82},
+    {"name":"Ehsan","position":"Defender","photo":"assets/Ehsan.jpg","rating":80}
   ]
 }
