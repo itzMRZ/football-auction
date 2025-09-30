@@ -177,6 +177,23 @@ function buildCaptainCards() {
     const header = document.createElement("div");
     header.className = "captain-header";
 
+    // Captain photo
+    const photoDiv = document.createElement("div");
+    photoDiv.className = "captain-photo-wrap";
+    const photo = document.createElement("img");
+    photo.className = "captain-photo";
+    photo.src = `assets/${slug}.jpg`;
+    photo.alt = cap.name;
+    photo.onerror = () => {
+      photo.onerror = null;
+      photo.src = PLACEHOLDER_IMG;
+    };
+    photoDiv.appendChild(photo);
+
+    // Team info
+    const infoDiv = document.createElement("div");
+    infoDiv.className = "captain-info";
+    
     const teamEl = document.createElement("div");
     teamEl.className = "team-name";
     teamEl.textContent = cap.teamName;
@@ -185,8 +202,11 @@ function buildCaptainCards() {
     capName.className = "captain-name";
     capName.textContent = cap.name;
 
-    header.appendChild(teamEl);
-    header.appendChild(capName);
+    infoDiv.appendChild(teamEl);
+    infoDiv.appendChild(capName);
+    
+    header.appendChild(photoDiv);
+    header.appendChild(infoDiv);
 
     const stats = document.createElement("div");
     stats.className = "captain-stats";
