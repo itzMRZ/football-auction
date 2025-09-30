@@ -160,6 +160,10 @@ function cacheDom() {
   UI.resetBtn = document.getElementById("resetBtn");
   UI.toast = document.getElementById("toast");
   UI.playerPanel = document.querySelector(".player-panel");
+  UI.playerListSidebar = document.getElementById("playerListSidebar");
+  UI.playerListContent = document.getElementById("playerListContent");
+  UI.toggleSidebar = document.getElementById("toggleSidebar");
+  UI.showSidebar = document.getElementById("showSidebar");
 }
 
 function buildCaptainCards() {
@@ -266,6 +270,7 @@ function renderCaptains() {
 function renderAll() {
   renderPlayer();
   renderCaptains();
+  renderPlayerList();
 }
 
 /* Navigation */
@@ -490,6 +495,8 @@ function setupEventListeners() {
   UI.exportJsonBtn?.addEventListener("click", exportTeamsJson);
   UI.exportPdfBtn?.addEventListener("click", exportTeamsPdf);
   UI.resetBtn?.addEventListener("click", resetAuction);
+  UI.toggleSidebar?.addEventListener("click", toggleSidebarOpen);
+  UI.showSidebar?.addEventListener("click", toggleSidebarOpen);
 
   UI.bidInput?.addEventListener("keydown", e => {
     if (e.key === "Enter") {
@@ -505,6 +512,61 @@ function setupEventListeners() {
       if (targetIndex >= 0) awardToCaptain(targetIndex);
     }
   });
+}
+
+/* Player List Sidebar */
+function renderPlayerList() {
+  if (!UI.playerListContent) return;
+  
+  const soldCount = STATE.players.filter(p => p.sold).length;
+  const unsoldCount = STATE.players.length - soldCount;
+  
+  let html = `
+    <div class="sidebar-stats">
+      <div><span>Total Players:</span> <strong>${STATE.players.length}</strong></div>
+      <div><span>Sold:</span> <strong style="color:var(--success)">${soldCount}</strong></div>
+      <div><span>Remaining:</span> <strong style="color:var(--warn)">${unsoldCount}</strong></div>
+    </div>
+  `;
+  
+  STATE.players.forEach((player, idx) => {
+    const statusClass = player.sold ? 'sold' : 'unsold';
+    const statusText = player.sold ? `${player.awardedTo}` : 'Available';
+    const priceText = player.sold ? ` • ${fmt.money(player.soldPrice)}` : '';
+    
+    html += `
+      <div class="player-list-item ${statusClass}" data-player-index="${idx}">
+        <div class="player-item-name">${player.name}</div>
+        <div class="player-item-meta">
+          <span>${player.position}${priceText}</span>
+          <span class="player-item-status ${statusClass}">${statusText}</span>
+        </div>
+      </div>
+    `;
+  });
+  
+  UI.playerListContent.innerHTML = html;
+  
+  // Add click handlers
+  document.querySelectorAll('.player-list-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const index = parseInt(item.dataset.playerIndex);
+      STATE.currentIndex = index;
+      renderAll();
+      // Close sidebar on mobile
+      if (window.innerWidth <= 700) {
+        UI.playerListSidebar.classList.remove('open');
+        UI.showSidebar.classList.remove('hidden');
+      }
+    });
+  });
+}
+
+function toggleSidebarOpen() {
+  if (UI.playerListSidebar) {
+    UI.playerListSidebar.classList.toggle('open');
+    UI.showSidebar.classList.toggle('hidden');
+  }
 }
 
 document.addEventListener("DOMContentLoaded", init);
