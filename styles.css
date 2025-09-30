@@ -15,6 +15,12 @@
 .team-mrz { --team: #f59e0b; }
 .team-mahim { --team: #ef4444; }
 
+/* Team colors for football clubs */
+.chelsea { --team-color: #3b82f6; }
+.man-city { --team-color: #22c55e; }
+.liverpool { --team-color: #f59e0b; }
+.arsenal { --team-color: #ef4444; }
+
 * { box-sizing: border-box; }
 
 html, body {
